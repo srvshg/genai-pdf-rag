@@ -1,0 +1,8 @@
+PyMuPDF
+pytesseract
+langchain
+docarray
+pydantic
+langchain-openai
+langchain
+python-dotenv
