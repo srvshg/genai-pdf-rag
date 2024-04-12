@@ -1,3 +1,6 @@
+import os
+import fitz  # PyMuPDF
+from langchain_community.document_loaders import TextLoader
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_community.vectorstores import DocArrayInMemorySearch
 from langchain_openai.embeddings import OpenAIEmbeddings
@@ -5,8 +8,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai.chat_models import ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import fitz  # PyMuPDF
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,8 +20,6 @@ with fitz.open('input-files/Stand_out_of_our_Light.pdf') as doc:
     with open("text_in_pdf.txt", "w") as file:
         file.write(text_in_pdf)
 
-
-from langchain_community.document_loaders import TextLoader
 
 loader = TextLoader("text_in_pdf.txt")
 text_documents = loader.load()
@@ -39,7 +38,7 @@ parser = StrOutputParser()
 
 
 template = """
-Answer the question based on the context below. If you can't 
+Answer the question based on the context below. If you can't
 answer the question, reply "I don't know".
 
 Context: {context}
